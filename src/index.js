@@ -8,13 +8,14 @@ const createTodo = (stateObj) => {
     if (stateObj.complete === false) {
     return `
     <article class='todo' id=${stateObj.id} onclick="toggle(${stateObj.id})">
-        <h3>${stateObj.text}</h3>
+        <h3>${stateObj.text}</h3> 
     </article>
+    
     `}
     return `
     <article class='todo done' id=${stateObj.id} onclick="toggle(${stateObj.id})">
             <h3>${stateObj.text}</h3>
-        <button onclick="deleteTodo(${stateObj.id})">X</button>
+        <button class='button deleteButton' onclick="deleteTodo(${stateObj.id})">X</button>
     </article>
     `
 };
@@ -23,6 +24,9 @@ const toggle = (id) => {
     state.map(obj => {
         if (obj.id === id && obj.complete === false) {
             return obj.complete = true
+        }
+        if (obj.id === id && obj.complete) {
+            return obj.complete = false
         }
     })
     window.dispatchEvent(new Event('statechange'));

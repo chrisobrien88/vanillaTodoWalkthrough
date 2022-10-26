@@ -2,15 +2,50 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    /* border: 1px solid red; */
   }
-  
+
+body {
+    max-width: 500px;
+}
+
+header, .textInput{
+    margin: 10px;
+    justify-content: center;
+    align-items: center;
+}
+.todoList {
+    display: flex;
+    flex-direction: column;
+    
+    justify-content: center;
+    align-items: center;
+}
+
   .todo{
+    margin: 10px;
     padding: 10px;
+    width: 90%;
     border-radius: 2px;
     border: solid black 1px;
     cursor: pointer;
+    order: 1;
   }
   
   .done {
-    background-color: grey;
+    background-color: rgb(186, 181, 181);
+    order: 2;
+  }
+
+  .button {
+    cursor: pointer;
+    background-color: aquamarine;
+  }
+
+  .buttonDelete {
+    background-color: red;
+  }
+
+  .button:hover {
+    background-color: rgb(209, 134, 36);
   }
