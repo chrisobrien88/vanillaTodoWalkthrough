@@ -1,0 +1,16 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .todo{
+    padding: 10px;
+    border-radius: 2px;
+    border: solid black 1px;
+    cursor: pointer;
+  }
+  
+  .done {
+    background-color: grey;
+  }
