@@ -1,4 +1,10 @@
-const state = [];
+const state = JSON.parse(localStorage.getItem('todos')) || [];
+
+const pushStateToLocalStorage = (state) => {
+    const stateString = JSON.stringify(state);
+    localStorage.setItem('todos', stateString)
+}
+
 
 const input = document.getElementById('txtTodoItemTitle')
 const btn = document.getElementById('btnAddTodo')
@@ -64,6 +70,10 @@ window.addEventListener('keypress', function (e) {
         addTodo()
     }
 });
+
+window.onload=render();
+
 window.addEventListener('statechange', () => {
+    pushStateToLocalStorage(state);
     render();
   });
