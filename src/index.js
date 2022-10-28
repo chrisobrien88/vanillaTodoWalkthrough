@@ -1,8 +1,7 @@
 const state = JSON.parse(localStorage.getItem('todos')) || [];
 
 const pushStateToLocalStorage = (state) => {
-    const stateString = JSON.stringify(state);
-    localStorage.setItem('todos', stateString)
+    localStorage.setItem('todos', JSON.stringify(state))
 }
 
 
@@ -10,23 +9,76 @@ const input = document.getElementById('txtTodoItemTitle')
 const btn = document.getElementById('btnAddTodo')
 const todoList = document.getElementById('todoList')
 
-const createTodo = (stateObj) => {
-    if (stateObj.complete === false) {
+const colorInput = document.getElementById('colorInput');
+const colorBtn = document.getElementById('btnChangeColor');
+colorBtn.addEventListener('click', () => changeColor())
+
+const changeColor = () => {
+    document.body.style.backgroundColor = colorInput.value;
+}
+
+btn.addEventListener('click', () => addTodo());
+
+const addTodo = () => {
+    try{
+        inputValidator(input.value);
+        const todo = {
+            id: Date.now(),
+            text: input.value,
+            important: false,
+            complete: false,
+        }
+        state.push(todo);
+        input.value = '';}
+    catch(e) {
+       console.log(e);
+       input.classList.add('shake')
+       setTimeout(() => {
+        input.classList = 'none'
+       }, 2000);
+       
+    }
+    window.dispatchEvent(new Event('statechange'));
+};
+
+const inputValidator = (input) => {
+    if (input.length === 0) {
+        throw new Error ('Input some text')
+    };
+}
+
+const render = () => {
+    todoList.innerHTML = state.map(obj => 
+        createTodo(obj)
+    )
+    .join('')   
+}
+
+const createTodo = ({id, text, complete, important}) => {
+    const deleteButton = `<button class='button deleteButton' onclick="deleteTodo(${id})">X</button>`
     return `
-    <article class='todo' id=${stateObj.id} onclick="toggle(${stateObj.id})">
-        <h3>${stateObj.text}</h3> 
-    </article>
-    
-    `}
-    return `
-    <article class='todo done' id=${stateObj.id} onclick="toggle(${stateObj.id})">
-            <h3>${stateObj.text}</h3>
-        <button class='button deleteButton' onclick="deleteTodo(${stateObj.id})">X</button>
-    </article>
+        <article class='todo ${complete? 'done':''} ${important? 'important':''}' id=${id} onclick="doneToggle(${id})">
+            <h3 id="todoText">${text}</h3>
+            <button onclick="event.stopPropagation();importantToggle(${id})">${important ? 'Not important' : 'Important'}</button>
+            ${complete ? deleteButton : ''}
+        </article>
     `
 };
 
-const toggle = (id) => {
+const importantToggle = (id) => {
+    console.log('hello', id);
+    state.map(obj => {
+        if (obj.id === id && obj.important === false) {
+            return obj.important = true
+        }
+        if (obj.id === id && obj.important) {
+            return obj.important = false
+        }
+    })
+    window.dispatchEvent(new Event('statechange'));
+};
+
+const doneToggle = (id) => {
     state.map(obj => {
         if (obj.id === id && obj.complete === false) {
             return obj.complete = true
@@ -43,29 +95,11 @@ const deleteTodo = (id) => {
         if (obj.id === id) {
             state.splice(index, 1);
         }
-    window.dispatchEvent(new Event('statechange'));
     });
-}
-
-const render = () => {
-    todoList.innerHTML = state.map(obj => createTodo(obj))
-    .join('')   
-}
-
-btn.addEventListener('click', () => addTodo());
-
-const addTodo = () => {
-    const todo = {
-        id: Date.now(),
-        text: input.value,
-        complete: false
-    }
-    state.push(todo);
-    input.value = '';
     window.dispatchEvent(new Event('statechange'));
-}
+};
 
-window.addEventListener('keypress', function (e) {
+window.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') {
         addTodo()
     }

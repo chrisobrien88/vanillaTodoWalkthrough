@@ -23,29 +23,48 @@ header, .textInput{
 }
 
   .todo{
+    display: flex;
     margin: 10px;
     padding: 10px;
     width: 90%;
     border-radius: 2px;
     border: solid black 1px;
     cursor: pointer;
-    order: 1;
+    order: 2;
   }
-  
+  .important {
+    order: 1;
+    border: 3px solid blue;
+  }
   .done {
     background-color: rgb(186, 181, 181);
-    order: 2;
+    order: 3;
   }
 
   .button {
     cursor: pointer;
     background-color: aquamarine;
+    width: 100px;
+    border-radius: 4px;
   }
 
-  .buttonDelete {
-    background-color: red;
+  .deleteButton {
+    background-color: rgb(225, 127, 127);
+    width: 30px;
+    border-radius: 10px;
   }
 
   .button:hover {
-    background-color: rgb(209, 134, 36);
+    background-color: rgb(237, 41, 41);
+  }
+
+  .shake{
+    animation: shakey 2s infinite;
+  }
+
+  @keyframes shakey {
+    10% { transform: scale(1.05) rotate(5deg); }
+    20% { transform: scale(1.05) rotate(-5deg); }
+    30% { transform: scale(1.05) rotate(5deg); }
+    40% { transform: none; }
   }
