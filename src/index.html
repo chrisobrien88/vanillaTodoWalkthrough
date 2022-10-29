@@ -13,16 +13,28 @@
   <header>
     <h1>No can TODOozeville</h1>
   </header>
-  <section class="textInput" id="input-container">
-      <input class="input" type="text" placeholder="I've got stuff to do..." id="txtTodoItemTitle">
+  <section class="textinputContainer" id="input-container">
+      <input class="todoInput" type="text" placeholder="I've got stuff to do..." id="txtTodoItemTitle">
+      <input class="todoInput" type="text" placeholder="category" id="txtTodoCategory">
     <button class="button" id="btnAddTodo" >Add</button>
-    </section>
-  <section class="todoList" id="todoList">
   </section>
-  <section class="colorChangeContainer">
+
+  <section class="todoListContainer" id="todoList">
+    <section class="todoContainer">Todo
+      <section class="todoList" id="todoListUncomplete">
+      </section>
+    </section>
+    <section class="todoContainer">In Progress
+      <section class="todoList" id="todoListComplete">
+      </section>
+    </section>
+  </section>
+  
+
+  <!-- <section class="colorChangeContainer">
     <input type="text" placeholder="choose a color" id="colorInput">
     <button class="button" id="btnChangeColor">Change Colour</button>
-  </section>
+  </section> -->
 </body>
 
 </html>

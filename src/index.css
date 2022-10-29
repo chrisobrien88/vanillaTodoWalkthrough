@@ -2,36 +2,73 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    /* border: 1px solid red; */
+    /* border: 1px solid pink; */
   }
 
 body {
-    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
-header, .textInput{
+.textinputContainer {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
+
+.todoInput{
+    max-width: 500px;
+    border: none;
+    box-shadow: 2px 5px 10px 5px rgb(195, 195, 195);
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
+}
+
+header{
     margin: 10px;
     justify-content: center;
     align-items: center;
 }
-.todoList {
+
+.todoListContainer {
+  max-width: 1000px;
+  display: flex;
+  flex-direction: column;
+}
+
+.todoList{
+    width: 100%;
     display: flex;
     flex-direction: column;
-    
-    justify-content: center;
     align-items: center;
+}
+
+.todoContainer {
+    display: flex;
+    flex-direction: column;
+    min-width: 300px;
 }
 
   .todo{
     display: flex;
+    flex-direction: column;
     margin: 10px;
-    padding: 10px;
+    min-width: 300px;
     width: 90%;
+    padding: 10px;
     border-radius: 2px;
     border: solid black 1px;
     cursor: pointer;
     order: 2;
   }
+
+  .todo > * {
+    margin: 8px;
+  }
+
   .important {
     order: 1;
     border: 3px solid blue;
@@ -41,10 +78,17 @@ header, .textInput{
     order: 3;
   }
 
+  .buttons-container{
+    display: flex;
+    justify-content: flex-end;
+    margin: 0;
+  }
+
   .button {
     cursor: pointer;
+    margin: 3px;
     background-color: aquamarine;
-    width: 100px;
+    width: 50px;
     border-radius: 4px;
   }
 
@@ -67,4 +111,13 @@ header, .textInput{
     20% { transform: scale(1.05) rotate(-5deg); }
     30% { transform: scale(1.05) rotate(5deg); }
     40% { transform: none; }
+  }
+
+  @media screen and (min-width: 500px) {
+    .todoListContainer {
+      flex-direction: row;
+    }
+    .todoContainer {
+      width: 50%;
+    }
   }

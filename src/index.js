@@ -4,37 +4,40 @@ const pushStateToLocalStorage = (state) => {
     localStorage.setItem('todos', JSON.stringify(state))
 }
 
-
-const input = document.getElementById('txtTodoItemTitle')
-const btn = document.getElementById('btnAddTodo')
-const todoList = document.getElementById('todoList')
-
+// elements
+const todoInput = document.getElementById('txtTodoItemTitle')
+const todoCategoryInput = document.getElementById('txtTodoCategory')
+const addBtn = document.getElementById('btnAddTodo')
+const todoListUncomplete = document.getElementById('todoListUncomplete')
+const todoListComplete = document.getElementById('todoListComplete')
 const colorInput = document.getElementById('colorInput');
 const colorBtn = document.getElementById('btnChangeColor');
-colorBtn.addEventListener('click', () => changeColor())
 
-const changeColor = () => {
-    document.body.style.backgroundColor = colorInput.value;
-}
+// colorBtn.addEventListener('click', () => changeColor())
 
-btn.addEventListener('click', () => addTodo());
+// const changeColor = () => {
+//     document.body.style.backgroundColor = colorInput.value;
+// }
+
+addBtn.addEventListener('click', () => addTodo());
 
 const addTodo = () => {
     try{
-        inputValidator(input.value);
+        inputValidator(todoInput.value);
         const todo = {
             id: Date.now(),
-            text: input.value,
+            text: todoInput.value,
+            category: todoCategoryInput.value,
             important: false,
             complete: false,
         }
         state.push(todo);
-        input.value = '';}
+        todoInput.value = '';}
     catch(e) {
        console.log(e);
-       input.classList.add('shake')
+       todoInput.classList.add('shake')
        setTimeout(() => {
-        input.classList = 'none'
+        todoInput.classList = 'none'
        }, 2000);
        
     }
@@ -47,23 +50,58 @@ const inputValidator = (input) => {
     };
 }
 
+// refactor this
 const render = () => {
-    todoList.innerHTML = state.map(obj => 
-        createTodo(obj)
+    todoListUncomplete.innerHTML = 
+        state.map(obj => 
+        {if (!obj.complete) 
+           return createTodo(obj)
+        }
     )
-    .join('')   
+    .join('');
+    
+    todoListComplete.innerHTML = state.map(obj => 
+        {if (obj.complete) 
+            return createTodo(obj)
+        }
+    )
+    .join('');
 }
 
-const createTodo = ({id, text, complete, important}) => {
+const createTodo = ({id, text, category, complete, important}) => {
     const deleteButton = `<button class='button deleteButton' onclick="deleteTodo(${id})">X</button>`
+    const copyTextButton = `<button class="button" onclick="event.stopPropagation(); copyContent(${id})">Copy Text</button>`
+    const importantButton = `
+        <button onclick="event.stopPropagation();importantToggle(${id})">${important ? 'Not important' : 'Flag'}</button>`
+
     return `
         <article class='todo ${complete? 'done':''} ${important? 'important':''}' id=${id} onclick="doneToggle(${id})">
+        ${category? `<h6>Category:</h6><h2>${category}</h2>`: ``}
             <h3 id="todoText">${text}</h3>
-            <button onclick="event.stopPropagation();importantToggle(${id})">${important ? 'Not important' : 'Important'}</button>
-            ${complete ? deleteButton : ''}
+            <section class = 'buttons-container'>
+                ${importantButton}
+                ${copyTextButton}
+                ${complete ? deleteButton : ''}
+            </section>
         </article>
     `
 };
+
+const copyContent = (id) => {
+    state.map(obj => {
+        if (obj.id === id) {
+            copy(obj.text);
+        }
+        
+  })}
+
+  const copy = async (text) => {
+    try {
+      await navigator.clipboard.writeText(text);
+    } catch (err) {
+      console.error('Failed to copy: ', err);
+    }
+  } 
 
 const importantToggle = (id) => {
     console.log('hello', id);
