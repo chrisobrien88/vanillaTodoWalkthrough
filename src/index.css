@@ -56,7 +56,7 @@ header{
     display: flex;
     flex-direction: column;
     margin: 10px;
-    min-width: 300px;
+    min-width: 200px;
     width: 90%;
     padding: 10px;
     border-radius: 2px;
@@ -113,7 +113,7 @@ header{
     40% { transform: none; }
   }
 
-  @media screen and (min-width: 500px) {
+  @media screen and (min-width: 680px) {
     .todoListContainer {
       flex-direction: row;
     }

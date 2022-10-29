@@ -81,7 +81,7 @@ const createTodo = ({id, text, category, complete, important}) => {
             <section class = 'buttons-container'>
                 ${importantButton}
                 ${copyTextButton}
-                ${complete ? deleteButton : ''}
+                ${deleteButton}
             </section>
         </article>
     `
