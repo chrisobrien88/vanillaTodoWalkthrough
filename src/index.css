@@ -12,19 +12,50 @@ body {
     justify-content: center;
 }
 
+h1 {
+  align-self: center;
+  color: rgb(44, 134, 104);
+}
+
+.blue{
+  background-color: rgb(182, 182, 224);
+}
+
+.green{
+  background-color: rgb(184, 242, 209);
+}
+
+.pink{
+  background-color: rgb(240, 156, 226);
+}
+
+.orange{
+  background-color: rgb(253, 208, 96);
+}
+
 .textinputContainer {
   display: flex;
   flex-direction: column;
-  align-content: center;
+  align-items: center;
+  width: 400px;
+  margin: 10px;
+  padding: 10px;
+  background-color: aliceblue;
+  box-shadow: 1px 1px 1px 1px rgb(169, 211, 248);
+  border-radius: 8px;
 }
 
 .todoInput{
-    max-width: 500px;
+    width: 90%;
     border: none;
-    box-shadow: 2px 5px 10px 5px rgb(195, 195, 195);
+    box-shadow: 4px 2px 2px 1px rgb(195, 195, 195);
     padding: 10px;
-    margin: 10px;
+    margin: 10px 0px;
     border-radius: 10px;
+}
+
+.textTodoInput {
+  height: 100px;
 }
 
 header{
@@ -54,7 +85,8 @@ header{
 
   .todo{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
     margin: 10px;
     min-width: 200px;
     width: 90%;
@@ -74,22 +106,33 @@ header{
     border: 3px solid blue;
   }
   .done {
-    background-color: rgb(186, 181, 181);
-    order: 3;
+    border: 2px dashed rgb(217, 217, 34);
   }
 
   .buttons-container{
     display: flex;
+    flex-direction: column;
     justify-content: flex-end;
-    margin: 0;
   }
 
   .button {
     cursor: pointer;
-    margin: 3px;
-    background-color: aquamarine;
+    margin: 4px 3px;
+    padding: 3px;
+    background-color: rgb(141, 217, 192);
+    color:rgb(255, 255, 255);
     width: 50px;
+    border: none;
+    box-shadow: 1px 1px 1px grey;
     border-radius: 4px;
+  }
+
+  .addButton {
+    width: 90%;
+  }
+
+  .importantButton {
+    background-color: rgb(180, 164, 60);
   }
 
   .deleteButton {
@@ -98,8 +141,12 @@ header{
     border-radius: 10px;
   }
 
-  .button:hover {
+  .deleteButton:hover {
     background-color: rgb(237, 41, 41);
+  }
+
+  .button:hover {
+    background-color: rgb(148, 236, 207);
   }
 
   .shake{

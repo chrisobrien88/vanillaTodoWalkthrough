@@ -30,6 +30,7 @@ const addTodo = () => {
             category: todoCategoryInput.value,
             important: false,
             complete: false,
+            randomNumber: Math.floor(Math.random() * 4)
         }
         state.push(todo);
         todoInput.value = '';}
@@ -37,7 +38,7 @@ const addTodo = () => {
        console.log(e);
        todoInput.classList.add('shake')
        setTimeout(() => {
-        todoInput.classList = 'none'
+        todoInput.classList = 'todoInput textTodoInput'
        }, 2000);
        
     }
@@ -68,15 +69,25 @@ const render = () => {
     .join('');
 }
 
-const createTodo = ({id, text, category, complete, important}) => {
+const createTodo = ({id, text, category, complete, important, randomNumber}) => {
     const deleteButton = `<button class='button deleteButton' onclick="deleteTodo(${id})">X</button>`
-    const copyTextButton = `<button class="button" onclick="event.stopPropagation(); copyContent(${id})">Copy Text</button>`
+    const copyTextButton = `<button class="button copyButton" onclick="event.stopPropagation(); copyContent(${id})">Copy</button>`
     const importantButton = `
-        <button onclick="event.stopPropagation();importantToggle(${id})">${important ? 'Not important' : 'Flag'}</button>`
+        <button class="button importantButton" onclick="event.stopPropagation();importantToggle(${id})">${important ? 'Not important' : 'Flag'}</button>`
 
     return `
-        <article class='todo ${complete? 'done':''} ${important? 'important':''}' id=${id} onclick="doneToggle(${id})">
-        ${category? `<h6>Category:</h6><h2>${category}</h2>`: ``}
+        <article class=
+                'todo ${complete? 'done':''}
+                ${important? 'important':''}
+                ${randomNumber}
+                ${randomNumber === 3 ? 'green' : ''}
+                ${randomNumber === 2 ? 'blue' : ''}
+                ${randomNumber === 1 ? 'pink' : ''}
+                ${randomNumber === 0 ? 'orange' : ''}
+                ' 
+            id=${id} 
+            onclick="doneToggle(${id})">
+            ${category? `<h2>${category}</h2>`: ``}
             <h3 id="todoText">${text}</h3>
             <section class = 'buttons-container'>
                 ${importantButton}
