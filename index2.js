@@ -33,8 +33,7 @@ const addTodo = () => {
             randomNumber: Math.floor(Math.random() * 4)
         }
         state.push(todo);
-        todoInput.value = '';
-        todoCategoryInput.value = ''}
+        todoInput.value = '';}
     catch(e) {
        console.log(e);
        todoInput.classList.add('shake')
@@ -78,13 +77,7 @@ const createTodo = ({id, text, category, complete, important, randomNumber}) => 
 
     return `
         <article class=
-                'todo ${complete? 'done':''}
-                ${important? 'important':''}
-                ${randomNumber === 3 ? 'green' : ''}
-                ${randomNumber === 2 ? 'blue' : ''}
-                ${randomNumber === 1 ? 'pink' : ''}
-                ${randomNumber === 0 ? 'orange' : ''}
-                ' 
+                'todo ${complete? 'done':''} ${important? 'important':''}' 
             id=${id} 
             onclick="doneToggle(${id})">
             ${category? `<h2>${category}</h2>`: ``}
