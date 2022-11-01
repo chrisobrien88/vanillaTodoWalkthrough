@@ -18,11 +18,11 @@ h1 {
 }
 
 .blue{
-  background-color: rgb(182, 182, 224);
+  background-color: rgb(163, 163, 219);
 }
 
 .green{
-  background-color: rgb(184, 242, 209);
+  background-color: rgb(163, 242, 197);
 }
 
 .pink{
@@ -34,11 +34,11 @@ h1 {
 }
 
 .blue:hover{
-  background-color: rgb(182, 222, 224);
+  background-color: rgb(169, 220, 223);
 }
 
 .green:hover{
-  background-color: rgb(184, 292, 209);
+  background-color: rgb(217, 241, 226);
 }
 
 .pink:hover{
@@ -186,5 +186,11 @@ header{
     }
     .todoContainer {
       width: 50%;
+    }
+    .textinputContainer{
+      width: 90%;
+    }
+    .todoListContainer{
+      width: 90%;
     }
   }
