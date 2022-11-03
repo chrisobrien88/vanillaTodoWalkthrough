@@ -12,6 +12,11 @@ body {
     justify-content: center;
 }
 
+input[type="text"]
+{
+    font-size:17px;
+}
+
 h1 {
   align-self: center;
   color: rgb(44, 134, 104);
