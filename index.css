@@ -12,6 +12,10 @@ body {
     justify-content: center;
 }
 
+p {
+  font-size: 25px;
+}
+
 input[type="text"]
 {
     font-size:17px;
