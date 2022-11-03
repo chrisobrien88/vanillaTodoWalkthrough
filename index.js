@@ -100,10 +100,10 @@ const createTodo = ({id, text, category, complete, important, randomNumber}) => 
                 ${complete === 'in progress' ? 'in-Progress':''}
                 ${complete === 'done' ? 'done':''}
                 ${important? 'important':'not-important'}
-                ${randomNumber === 3 ? 'green' : ''}
-                ${randomNumber === 2 ? 'blue' : ''}
-                ${randomNumber === 1 ? 'pink' : ''}
-                ${randomNumber === 0 ? 'orange' : ''}
+                ${randomNumber === 3 && complete !== 'done' ? 'green' : ''}
+                ${randomNumber === 2 && complete !== 'done' ? 'blue' : ''}
+                ${randomNumber === 1 && complete !== 'done' ? 'pink' : ''}
+                ${randomNumber === 0 && complete !== 'done' ? 'orange' : ''}
                 ' 
             id=${id} 
             onclick="doneToggle(${id})">
