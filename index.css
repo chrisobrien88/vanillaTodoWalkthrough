@@ -127,11 +127,11 @@ header{
   }
 
   .in-Progress {
-    box-shadow: 2px 2px 2px rgb(111, 219, 152);
+    box-shadow: 1px 1px 1px 7px rgb(108, 233, 138);
   }
 
   .done {
-    border: 2px dashed rgb(217, 34, 174);
+    background-color: grey;
   }
 
   .important {
@@ -163,6 +163,7 @@ header{
 
   .addButton {
     width: 90%;
+    height: 3rem;
   }
 
   .importantButton {

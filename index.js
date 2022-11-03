@@ -8,6 +8,11 @@ const pushStateToLocalStorage = (state) => {
 const todoInput = document.getElementById('txtTodoItemTitle')
 const todoCategoryInput = document.getElementById('txtTodoCategory')
 const addBtn = document.getElementById('btnAddTodo')
+
+const todoUncompleteTitle = document.getElementById('todoUncompleteTitle')
+const todoInProgressTitle = document.getElementById('todoInProgressTitle')
+const todoDoneTitle = document.getElementById('todoDoneTitle')
+
 const todoListUncomplete = document.getElementById('todoListUncomplete')
 const todoListInProgress = document.getElementById('todoListInProgress')
 const todoListComplete = document.getElementById('todoListComplete')
@@ -56,13 +61,20 @@ const render = () => {
         }
     )
     .join('');
-    
+    todoListUncomplete.innerHTML.length > 0? 
+        todoUncompleteTitle.innerHTML = 'Todo':
+        todoUncompleteTitle.innerHTML = ''
+    ;
     todoListInProgress.innerHTML = state.map(obj => 
         {if (obj.complete === 'in progress') 
             return createTodo(obj)
         }
     )
     .join('');
+    todoListInProgress.innerHTML.length > 0?
+        todoInProgressTitle.innerHTML = 'In Progress':
+        todoInProgressTitle.innerHTML = ''
+    
 
     todoListComplete.innerHTML = state.map(obj => 
         {if (obj.complete === 'done') 
@@ -70,6 +82,10 @@ const render = () => {
         }
     )
     .join('');
+    todoListComplete.innerHTML.length > 0? 
+        todoDoneTitle.innerHTML = 'Done':
+        todoDoneTitle.innerHTML = ''
+    ;
 }
 
 const createTodo = ({id, text, category, complete, important, randomNumber}) => {
