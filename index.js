@@ -107,8 +107,8 @@ const createTodo = ({id, text, category, complete, important, randomNumber}) => 
                 ' 
             id=${id} 
             onclick="doneToggle(${id})">
-            ${category? `<h2>${category}</h2>`: ``}
             <p id="todoText">${text}</p>
+            ${category? `<h2>${category}</h2>`: ``}
             <section class = 'buttons-container'>
                 ${importantButton}
                 ${copyTextButton}
