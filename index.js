@@ -83,7 +83,7 @@ const createTodo = ({id, text, category, complete, important, randomNumber}) => 
                 'todo 
                 ${complete === 'in progress' ? 'in-Progress':''}
                 ${complete === 'done' ? 'done':''}
-                ${important? 'important':''}
+                ${important? 'important':'not-important'}
                 ${randomNumber === 3 ? 'green' : ''}
                 ${randomNumber === 2 ? 'blue' : ''}
                 ${randomNumber === 1 ? 'pink' : ''}
@@ -138,6 +138,9 @@ const doneToggle = (id) => {
         }
         if (obj.id === id && obj.complete === 'in progress') {
             return obj.complete = 'done'
+        }
+        if (obj.id === id && obj.complete === 'done') {
+            return obj.complete = 'not done'
         }
     })
     window.dispatchEvent(new Event('statechange'));

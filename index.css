@@ -108,7 +108,7 @@ header{
     width: 90%;
     padding: 10px;
     border-radius: 2px;
-    border: solid black 1px;
+    box-shadow: 2px 2px 2px grey;
     cursor: pointer;
     order: 2;
   }
@@ -121,6 +121,14 @@ header{
     margin: 8px;
   }
 
+  .in-Progress {
+    box-shadow: 2px 2px 2px rgb(111, 219, 152);
+  }
+
+  .done {
+    border: 2px dashed rgb(217, 34, 174);
+  }
+
   .important {
     order: 1;
     border: 3px solid blue;
@@ -128,15 +136,6 @@ header{
   
   .not-important {
     order: 2;
-    border: 3px solid blue;
-  }
-
-  .in-Progress {
-    border: 2px dashed rgb(217, 217, 34);
-  }
-
-  .done {
-    border: 2px dashed rgb(217, 34, 174);
   }
 
   .buttons-container{
