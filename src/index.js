@@ -9,15 +9,10 @@ const todoInput = document.getElementById('txtTodoItemTitle')
 const todoCategoryInput = document.getElementById('txtTodoCategory')
 const addBtn = document.getElementById('btnAddTodo')
 const todoListUncomplete = document.getElementById('todoListUncomplete')
+const todoListInProgress = document.getElementById('todoListInProgress')
 const todoListComplete = document.getElementById('todoListComplete')
 const colorInput = document.getElementById('colorInput');
 const colorBtn = document.getElementById('btnChangeColor');
-
-// colorBtn.addEventListener('click', () => changeColor())
-
-// const changeColor = () => {
-//     document.body.style.backgroundColor = colorInput.value;
-// }
 
 addBtn.addEventListener('click', () => addTodo());
 
@@ -29,7 +24,7 @@ const addTodo = () => {
             text: todoInput.value,
             category: todoCategoryInput.value,
             important: false,
-            complete: false,
+            complete: 'not done',
             randomNumber: Math.floor(Math.random() * 4)
         }
         state.push(todo);
@@ -56,14 +51,21 @@ const inputValidator = (input) => {
 const render = () => {
     todoListUncomplete.innerHTML = 
         state.map(obj => 
-        {if (!obj.complete) 
+        {if (obj.complete === 'not done') 
            return createTodo(obj)
         }
     )
     .join('');
     
+    todoListInProgress.innerHTML = state.map(obj => 
+        {if (obj.complete === 'in progress') 
+            return createTodo(obj)
+        }
+    )
+    .join('');
+
     todoListComplete.innerHTML = state.map(obj => 
-        {if (obj.complete) 
+        {if (obj.complete === 'done') 
             return createTodo(obj)
         }
     )
@@ -78,7 +80,9 @@ const createTodo = ({id, text, category, complete, important, randomNumber}) => 
 
     return `
         <article class=
-                'todo ${complete? 'done':''}
+                'todo 
+                ${complete === 'in progress' ? 'in-Progress':''}
+                ${complete === 'done' ? 'done':''}
                 ${important? 'important':''}
                 ${randomNumber === 3 ? 'green' : ''}
                 ${randomNumber === 2 ? 'blue' : ''}
@@ -88,7 +92,7 @@ const createTodo = ({id, text, category, complete, important, randomNumber}) => 
             id=${id} 
             onclick="doneToggle(${id})">
             ${category? `<h2>${category}</h2>`: ``}
-            <h3 id="todoText">${text}</h3>
+            <p id="todoText">${text}</p>
             <section class = 'buttons-container'>
                 ${importantButton}
                 ${copyTextButton}
@@ -117,7 +121,7 @@ const copyContent = (id) => {
 const importantToggle = (id) => {
     console.log('hello', id);
     state.map(obj => {
-        if (obj.id === id && obj.important === false) {
+        if (obj.id === id && !obj.important) {
             return obj.important = true
         }
         if (obj.id === id && obj.important) {
@@ -129,11 +133,11 @@ const importantToggle = (id) => {
 
 const doneToggle = (id) => {
     state.map(obj => {
-        if (obj.id === id && obj.complete === false) {
-            return obj.complete = true
+        if (obj.id === id && obj.complete === 'not done') {
+            return obj.complete = 'in progress'
         }
-        if (obj.id === id && obj.complete) {
-            return obj.complete = false
+        if (obj.id === id && obj.complete === 'in progress') {
+            return obj.complete = 'done'
         }
     })
     window.dispatchEvent(new Event('statechange'));

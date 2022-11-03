@@ -125,8 +125,18 @@ header{
     order: 1;
     border: 3px solid blue;
   }
-  .done {
+  
+  .not-important {
+    order: 2;
+    border: 3px solid blue;
+  }
+
+  .in-Progress {
     border: 2px dashed rgb(217, 217, 34);
+  }
+
+  .done {
+    border: 2px dashed rgb(217, 34, 174);
   }
 
   .buttons-container{
