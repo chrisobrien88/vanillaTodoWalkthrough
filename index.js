@@ -24,14 +24,31 @@ addBtn.addEventListener('click', () => addTodo());
 const addTodo = () => {
     try{
         inputValidator(todoInput.value);
+
+        // categories = state.map(todo => todo.category)
+        // matchingCategory = categories.find(category => { 
+        //     if (category === todoCategoryInput.value) 
+        //         return category
+        //     });
+        // console.log('matching', matchingCategory);
+        // const matchingTodo = state.find(todo => {
+        //     if (todo.category === matchingCategory) 
+        //         {return [todo.randomNumber, todo.id]}
+        //     return 'no match'
+        //     })
+        // console.log('huh', matchingTodo);
+
         const todo = {
             id: Date.now(),
             text: todoInput.value,
             category: todoCategoryInput.value,
             important: false,
             complete: 'not done',
-            randomNumber: Math.floor(Math.random() * 4)
+            randomNumber: Math.floor(Math.random() * 4),
         }
+        // if (matchingCategory) {
+        //     todo.randomNumber = matchingTodo[0]
+        // }
         state.push(todo);
         todoInput.value = '';
         todoCategoryInput.value = ''}
@@ -52,36 +69,30 @@ const inputValidator = (input) => {
     };
 }
 
-// refactor this
-const render = () => {
-    todoListUncomplete.innerHTML = 
-        state.map(obj => 
-        {if (obj.complete === 'not done') 
+const mapAndCreate = (status) => {
+    const orderedState = state.sort(
+        (p1, p2) => (p1.order < p2.order) ? 1 : (p1.order > p2.order) ? -1 : 0);
+    return orderedState.map(obj => 
+        {if (obj.complete === status) 
            return createTodo(obj)
         }
     )
     .join('');
+}
+
+// refactor this
+const render = () => {
+    todoListUncomplete.innerHTML = mapAndCreate('not done');
     todoListUncomplete.innerHTML.length > 0? 
         todoUncompleteTitle.innerHTML = 'Todo':
         todoUncompleteTitle.innerHTML = ''
     ;
-    todoListInProgress.innerHTML = state.map(obj => 
-        {if (obj.complete === 'in progress') 
-            return createTodo(obj)
-        }
-    )
-    .join('');
+    todoListInProgress.innerHTML = mapAndCreate('in progress');
     todoListInProgress.innerHTML.length > 0?
         todoInProgressTitle.innerHTML = 'In Progress':
         todoInProgressTitle.innerHTML = ''
     
-
-    todoListComplete.innerHTML = state.map(obj => 
-        {if (obj.complete === 'done') 
-            return createTodo(obj)
-        }
-    )
-    .join('');
+    todoListComplete.innerHTML = mapAndCreate('done');
     todoListComplete.innerHTML.length > 0? 
         todoDoneTitle.innerHTML = 'Done':
         todoDoneTitle.innerHTML = ''
@@ -97,13 +108,10 @@ const createTodo = ({id, text, category, complete, important, randomNumber}) => 
     return `
         <article class=
                 'todo 
-                ${complete === 'in progress' ? 'in-Progress':''}
-                ${complete === 'done' ? 'done':''}
+                ${complete === 'in progress' ? 'in-Progress': '' }
+                ${complete === 'done' ? 'done' : ''}
                 ${important? 'important':'not-important'}
-                ${randomNumber === 3 && complete !== 'done' ? 'green' : ''}
-                ${randomNumber === 2 && complete !== 'done' ? 'blue' : ''}
-                ${randomNumber === 1 && complete !== 'done' ? 'pink' : ''}
-                ${randomNumber === 0 && complete !== 'done' ? 'orange' : ''}
+                ${complete !== 'done' ? randomNumber : ''}
                 ' 
             id=${id} 
             onclick="doneToggle(${id})">
@@ -135,7 +143,6 @@ const copyContent = (id) => {
   } 
 
 const importantToggle = (id) => {
-    console.log('hello', id);
     state.map(obj => {
         if (obj.id === id && !obj.important) {
             return obj.important = true

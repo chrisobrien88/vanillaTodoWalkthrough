@@ -42,22 +42,6 @@ h1 {
   background-color: rgb(253, 208, 96);
 }
 
-.blue:hover{
-  background-color: rgb(169, 220, 223);
-}
-
-.green:hover{
-  background-color: rgb(217, 241, 226);
-}
-
-.pink:hover{
-  background-color: rgb(240, 200, 226);
-}
-
-.orange:hover{
-  background-color: rgb(253, 150, 96);
-}
-
 .textinputContainer {
   display: flex;
   flex-direction: column;
@@ -122,9 +106,9 @@ header{
     order: 2;
   }
 
-  /* .todo:hover{
-    background-color: rgb(191, 238, 222);
-  } */
+  .todo:hover{
+    box-shadow: 5px 5px 5px rgb(140, 140, 140);
+  }
 
   .todo > * {
     margin: 6px;
