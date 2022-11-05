@@ -79,7 +79,7 @@ const inputValidator = (input) => {
 
 const mapAndCreate = (status) => {
     const orderedState = state.sort(
-        (p1, p2) => (p1.order < p2.order) ? 1 : (p1.order > p2.order) ? -1 : 0);
+        (p1, p2) => (p1.id < p2.id) ? 1 : (p1.id > p2.id) ? -1 : 0);
     return orderedState.map(obj => 
         {if (obj.complete === status) 
            return createTodo(obj)
