@@ -188,7 +188,9 @@ header{
       background-color: rgb(250, 82, 31);
     }
     .todo:hover{
-      box-shadow: 205px 0px 0px 10px rgb(255, 137, 102);
+      transform: translateX(15px);
+      transition: 0.5s;
+      box-shadow: -15px 0px 0px 0px rgb(255, 137, 102);
     }
   }
 
