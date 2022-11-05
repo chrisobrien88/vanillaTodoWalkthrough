@@ -1,11 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    font-family: inter, sans-serif;
     /* border: 1px solid pink; */
   }
 
 body {
+    background-color: #4E9DB1;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -23,23 +27,11 @@ input[type="text"]
 
 h1 {
   align-self: center;
-  color: rgb(44, 134, 104);
+  color: #efefef;
 }
 
-.blue{
-  background-color: rgb(163, 163, 219);
-}
-
-.green{
-  background-color: rgb(163, 242, 197);
-}
-
-.pink{
-  background-color: rgb(240, 156, 226);
-}
-
-.orange{
-  background-color: rgb(253, 208, 96);
+h3 {
+  color:rgb(31, 122, 140)
 }
 
 .textinputContainer {
@@ -48,8 +40,8 @@ h1 {
   align-items: center;
   width: 400px;
   margin: 10px;
-  padding: 10px;
-  background-color: aliceblue;
+  padding: 20px;
+  background-color: #57b1c7;
   box-shadow: 1px 1px 1px 1px rgb(169, 211, 248);
   border-radius: 8px;
 }
@@ -64,7 +56,7 @@ h1 {
 }
 
 .textTodoInput {
-  height: 100px;
+  height: 50px;
 }
 
 header{
@@ -100,22 +92,23 @@ header{
     min-width: 200px;
     width: 90%;
     padding: 10px;
-    border-radius: 2px;
-    box-shadow: 2px 2px 2px grey;
+    border-radius: 20px;
     cursor: pointer;
     order: 2;
   }
 
-  .todo:hover{
-    box-shadow: 5px 5px 5px rgb(140, 140, 140);
-  }
+ /* .todo:active{
+    transform: translateX(400px);
+    transition: 0.3s;
+
+ } */
 
   .todo > * {
     margin: 6px;
   }
 
   .in-Progress {
-    box-shadow: 1px 1px 1px 7px rgb(108, 233, 138);
+    box-shadow: 1px 1px 0px 7px #b1c758;
   }
 
   .done {
@@ -124,7 +117,7 @@ header{
 
   .important {
     order: 1;
-    border: 3px solid blue;
+    border: 10px solid rgb(255, 137, 102);
   }
   
   .not-important {
@@ -149,31 +142,54 @@ header{
     border-radius: 4px;
   }
 
+  .button:active {
+    transform: translateY(4px);
+    transition: 0.2s;
+  }
   .addButton {
     width: 90%;
     height: 3rem;
+    background-color: rgb(255, 137, 102);
   }
 
   .importantButton {
-    background-color: rgb(180, 164, 60);
+    background-color: rgb(255, 137, 102);
+    width:fit-content;
+    padding: 7px 20px;
   }
-
+ 
   .deleteButton {
     background-color: rgb(225, 127, 127);
     width: 30px;
     border-radius: 10px;
   }
 
-  .deleteButton:hover {
-    background-color: rgb(237, 41, 41);
-  }
-
-  .button:hover {
-    background-color: rgb(148, 236, 207);
+  .copyButton {
+    background-color: #4E9DB1;
   }
 
   .shake{
     animation: shakey 2s infinite;
+  }
+
+  @media (hover: hover) {
+    .button:hover {
+      background-color: rgb(148, 236, 207);
+    }
+  
+    .deleteButton:hover {
+      background-color: rgb(255, 137, 102);
+    }
+  
+    .importantButton:hover {
+      background-color: rgb(221, 35, 81);
+    }
+    .addButton:hover{
+      background-color: rgb(250, 82, 31);
+    }
+    .todo:hover{
+      box-shadow: 205px 0px 0px 10px rgb(255, 137, 102);
+    }
   }
 
   @keyframes shakey {
