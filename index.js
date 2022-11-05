@@ -114,7 +114,7 @@ const createTodo = ({id, text, category, complete, important, backgroundColor, c
         <button class="button importantButton" onclick="event.stopPropagation();importantToggle(${id})">${important ? 'De-flag' : 'Flag'}</button>`
 
     return `
-        <article style="background-Color:${backgroundColor};color:${color}"
+        <article style="background-Color:${complete === 'done' ? 'grey': backgroundColor };color:${color}"
             class = ' 
                 ${complete === 'in progress' ? 'in-Progress': 'todo' }
                 ${complete === 'done' ? 'done' : 'todo'}

@@ -111,10 +111,6 @@ header{
     box-shadow: 1px 1px 0px 7px #b1c758;
   }
 
-  .done {
-    background-color: grey;
-  }
-
   .important {
     order: 1;
     border: 10px solid rgb(255, 137, 102);
@@ -170,6 +166,10 @@ header{
 
   .shake{
     animation: shakey 2s infinite;
+  }
+
+  .done {
+    background-color: grey;
   }
 
   @media (hover: hover) {
